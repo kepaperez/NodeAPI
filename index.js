@@ -1,0 +1,30 @@
+const http = require('http')
+
+const notes =[
+    {
+        "id":1,
+        "content":"Me tengo que ir a clase",
+        "important":true
+    },
+
+    {
+        "id":2,
+        "content":"Me tengo que ir a clase",
+        "important":true
+    },
+
+    {
+        "id":3,
+        "content":"Comparar patatas",
+        "important":false
+    }
+]
+
+const app = http.createServer((request ,response) =>{
+    response.writeHead(200 ,{'Content-Type':'application/json'})
+    response.end(JSON.stringify(notes))
+})
+
+const PORT = 3001
+app.listen(PORT)
+console.log(`Server running on port ${PORT}`)
