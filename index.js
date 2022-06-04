@@ -1,6 +1,7 @@
 const express = require('express')
 const app = express()
 
+app.use(express.json())
 let notes =[
     {
         "id":1,
@@ -49,13 +50,26 @@ app.delete('/api/notes/:id',(request ,response) =>{
     notes = notes.filter(note => note.id != id)
     response.status(204).end()
 })
+//POST CREATE NUEVA NOTE
+app.post('/api/notes',(request ,response) =>{
+  const note = request.body
+    const ids = notes.map(note => note.id)
+    maxId = Math.max(...ids)
+  
+  const newNote ={
+      id: maxId + 1,
+      content:note.content,
+      important: typeof note.important !== 'undefined'? note.important:false,
+      date: new Date().getDate
+  }
+  notes = notes.concat(newNote)
+  response.status(201).json(newNote)
+})
 
 
 const PORT = 3001
 app.listen(PORT,()=>{
     console.log(`Server running on port ${PORT}`)
-
-
 })
 
 
