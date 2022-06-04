@@ -1,6 +1,6 @@
 # Node Api
 
-### Intalar
+### Que Instalar
 #### Nodemon
 *La d es para que sea una dependencia de desarrollo
 ##### Instalar
