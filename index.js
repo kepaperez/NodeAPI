@@ -1,7 +1,11 @@
 const express = require('express')
+const cors = require('cors')
+
 const app = express()
 
+app.use(cors())
 app.use(express.json())
+
 let notes =[
     {
         "id":1,
@@ -64,6 +68,12 @@ app.post('/api/notes',(request ,response) =>{
   }
   notes = notes.concat(newNote)
   response.status(201).json(newNote)
+})
+
+app.use((request ,response)=>{
+    response.status(404).json({
+    error: 'Not found'
+    })
 })
 
 
